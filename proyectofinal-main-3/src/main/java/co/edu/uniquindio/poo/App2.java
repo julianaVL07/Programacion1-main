@@ -21,7 +21,7 @@ public class App2 {
         while (!salir) {
             String[] opciones = {"Login como Empleado", "Login como Administrador", "Salir"};
             int opcion = JOptionPane.showOptionDialog(null, 
-                "=== Bienvenido a Tu Carro UQ ===", 
+                "=== Bienvenido a Transportes automóviles SJLL===", 
                 "Menú Principal", 
                 JOptionPane.DEFAULT_OPTION, 
                 JOptionPane.INFORMATION_MESSAGE, 
@@ -43,7 +43,7 @@ public class App2 {
                     JOptionPane.showMessageDialog(null, "Opción no válida", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        JOptionPane.showMessageDialog(null, "Gracias por usar Tu Carro UQ.");
+        JOptionPane.showMessageDialog(null, "Gracias por usar Transportes automóviles SJLL");
     }
 
     private static void inicializarDatos() {
@@ -185,7 +185,10 @@ public class App2 {
 
 
     private static void gestionarEmpleados() {
-        String[] empleadosLista = empleados.stream().map(empleado -> empleado.getNombres() + " " + empleado.getApellidos()).toArray(String[]::new);
+        String[] empleadosLista = empleados.stream()
+            .map(empleado -> empleado.getNombres() + " " + empleado.getApellidos())
+            .toArray(String[]::new);
+    
         String empleadoSeleccionado = (String) JOptionPane.showInputDialog(null, 
             "Seleccione el empleado a gestionar", 
             "Gestionar Empleado", 
@@ -193,15 +196,15 @@ public class App2 {
             null, 
             empleadosLista, 
             empleadosLista[0]);
-
+    
         if (empleadoSeleccionado != null) {
             Empleado empleado = empleados.stream()
                 .filter(emp -> (emp.getNombres() + " " + emp.getApellidos()).equals(empleadoSeleccionado))
                 .findFirst()
                 .orElse(null);
-
+    
             if (empleado != null) {
-                String[] opcionesGestion = {"Bloquear cuenta", "Volver"};
+                String[] opcionesGestion = {"Bloquear cuenta", "Desbloquear cuenta", "Volver"};
                 int opcion = JOptionPane.showOptionDialog(null, 
                     "Opciones para el empleado: " + empleadoSeleccionado, 
                     "Gestionar Empleado", 
@@ -210,10 +213,18 @@ public class App2 {
                     null, 
                     opcionesGestion, 
                     opcionesGestion[0]);
-
-                if (opcion == 0) {
-                    empleado.bloquearCuenta();
-                    JOptionPane.showMessageDialog(null, "Cuenta bloqueada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    
+                switch (opcion) {
+                    case 0: // Bloquear cuenta
+                        empleado.bloquearCuenta();
+                        JOptionPane.showMessageDialog(null, "Cuenta bloqueada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 1: // Desbloquear cuenta
+                        empleado.desbloquearCuenta();
+                        JOptionPane.showMessageDialog(null, "Cuenta desbloqueada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    default: // Volver
+                        break;
                 }
             }
         }
