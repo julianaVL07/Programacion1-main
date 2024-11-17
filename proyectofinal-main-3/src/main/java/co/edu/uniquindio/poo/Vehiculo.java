@@ -98,9 +98,7 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo: codigo=" + codigo + ", marca=" + marca + ", modelo=" + modelo + ", nuevo=" + nuevo
-                + ", cambios=" + cambios + ", velocidadMaxima=" + velocidadMaxima + ", cilindraje=" + cilindraje
-                + ", transmision=" + transmision + ", combustible=" + combustible;
+        return " \nvehiculo: 3"+"-Su código es:" + codigo + "-su marca es:" + marca + "-el modelo es: " + modelo + "-es nuevo o no: " + nuevo+ "-su cambios son: " + cambios + "-su velocidad Máxima: " + velocidadMaxima + "-su cilindraje es: " + cilindraje + "-su Tipo transmisión es: " + transmision + "-su Tipo combustible es: " + combustible;
     }
 
     

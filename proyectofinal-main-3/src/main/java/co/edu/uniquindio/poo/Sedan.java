@@ -8,10 +8,10 @@ public class Sedan extends VehiculoProvision {
             double velocidadMaxima, double cilindraje, Transmision transmision, Combustible combustible,
             int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, boolean aireAcondicionado, boolean abs,
             boolean camaraReversa, boolean sensorColision, boolean sensorTrafico, boolean asistentePermanenciaCarril,
-            boolean velocidadCrucero, double capacidadCarga) {
+            boolean velocidadCrucero, double capacidadMaletero) {
         super(codigo, marca, modelo, nuevo, cambios, velocidadMaxima, cilindraje, transmision, combustible,
                 numeroPasajeros, numeroPuertas, numeroBolsasAire, aireAcondicionado, abs, camaraReversa,sensorColision,
-                sensorTrafico, asistentePermanenciaCarril, velocidadCrucero, capacidadCarga);
+                sensorTrafico, asistentePermanenciaCarril, velocidadCrucero, capacidadMaletero);
             assert !codigo.isBlank();
             assert !marca.isBlank();
             assert !modelo.isBlank();
@@ -22,7 +22,7 @@ public class Sedan extends VehiculoProvision {
 
     @Override
     public String toString() {
-        return "Sedan: "+super.toString();
+        return "\nSedan{ "+super.toString()+"}";
     }
 
     public static void mostrarMensaje(String mensaje){

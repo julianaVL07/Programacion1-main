@@ -31,7 +31,7 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return "Cliente:"+super.toString()+ ", telefono=" + telefono + ", edad=" + edad + "]";
+        return "Cliente: Sus nombres son: " + nombres + ", sus apellidos: " + apellidos + ", su cédula es: " + cedula + ",su correo es:" + correo+ " ,su telefono es: " + telefono + ", su edad es: " + edad + ".";
     }
 
     public static void mostrarMensaje(String mensaje){

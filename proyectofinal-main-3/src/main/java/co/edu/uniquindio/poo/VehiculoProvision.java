@@ -5,20 +5,20 @@ public class VehiculoProvision extends VehiculoEsencial{
     public boolean sensorTrafico;
     public boolean asistentePermanenciaCarril;
     public boolean velocidadCrucero;
-    public double capacidadCarga;
+    public double capacidadMaletero;
 
     public VehiculoProvision(String codigo, String marca, String modelo, boolean nuevo, int cambios,
             double velocidadMaxima, double cilindraje, Transmision transmision, Combustible combustible,
             int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, boolean aireAcondicionado, boolean abs,
             boolean camaraReversa, boolean sensorColision, boolean sensorTrafico, boolean asistentePermanenciaCarril,
-            boolean velocidadCrucero, double capacidadCarga) {
+            boolean velocidadCrucero, double capacidadMaletero) {
         super(codigo, marca, modelo, nuevo, cambios, velocidadMaxima, cilindraje, transmision, combustible,
                 numeroPasajeros, numeroPuertas, numeroBolsasAire, aireAcondicionado, abs, camaraReversa);
         this.sensorColision = sensorColision;
         this.sensorTrafico = sensorTrafico;
         this.asistentePermanenciaCarril = asistentePermanenciaCarril;
         this.velocidadCrucero = velocidadCrucero;
-        this.capacidadCarga = capacidadCarga;
+        this.capacidadMaletero = capacidadMaletero;
     }
 
     public boolean isSensorColision() {
@@ -54,18 +54,18 @@ public class VehiculoProvision extends VehiculoEsencial{
     }
 
     public double getCapacidadCarga() {
-        return capacidadCarga;
+        return capacidadMaletero;
     }
 
-    public void setCapacidadCarga(double capacidadCarga) {
-        this.capacidadCarga = capacidadCarga;
+    public void setCapacidadCarga(double capacidadMaletero) {
+        this.capacidadMaletero = capacidadMaletero;
     }
 
     @Override
     public String toString() {
-        return "VehiculoProvision:"+super.toString()+", sensorColision=" + sensorColision + ", sensorTrafico=" + sensorTrafico
-                + ", asistentePermanenciaCarril=" + asistentePermanenciaCarril + ", velocidadCrucero="
-                + velocidadCrucero + ", capacidadCarga=" + capacidadCarga;
+        return super.toString()+"-sensorColision=" + sensorColision + "-sensor de Trafico: " + sensorTrafico
+                + "-asistente de permanencia del Carril: " + asistentePermanenciaCarril + "-velocidad Crucero: "
+                + velocidadCrucero + "-capacidad de Carga:" + capacidadMaletero;
     }
 
     

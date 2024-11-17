@@ -36,7 +36,7 @@ public class Deportivo extends VehiculoNumero {
 
     @Override
     public String toString() {
-        return "Deportivo: "+super.toString()+"caballosFuerza=" + caballosFuerza + ", tiempoCien=" + tiempoCien;
+        return "\nDeportivo{ "+super.toString()+"-sus caballosFuerza son: " + caballosFuerza + "-tiempo en que alcanzan los 100km/h: " + tiempoCien+"}";
     }
 
     public static void mostrarMensaje(String mensaje){

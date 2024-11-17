@@ -34,7 +34,7 @@ public class Hibrido extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Hibrido: "+super.toString()+", enchufable=" + enchufable + ", ligero=" + ligero;
+        return "\nHibrido{ "+super.toString()+"-enchufable:" + enchufable + "-ligero:" + ligero+"}";
     }
 
     public static void mostrarMensaje(String mensaje){

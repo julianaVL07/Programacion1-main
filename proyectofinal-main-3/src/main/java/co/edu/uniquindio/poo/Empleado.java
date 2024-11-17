@@ -43,11 +43,13 @@ public class Empleado extends Persona{
         this.cuentaBloqueada = false;
     }
 
-    // Método que verifica si la cuenta está bloqueada
-    public boolean isCuentaBloqueada() {
+    public boolean getCuentaBloqueada() {
         return cuentaBloqueada;
-    }    
-
+    }  
+      
+    public void setCuentaBloqueada(boolean cuentaBloqueada) {
+        this.cuentaBloqueada = cuentaBloqueada;
+    }
 
     public String getUsuario() {
         return usuario;
@@ -99,8 +101,8 @@ public class Empleado extends Persona{
 
     @Override
     public String toString() {
-        return "Empleado:"+super.toString()+ ", usuario=" + usuario + ", contraseña=" + contraseña + ", recuperacionCuenta="
-                + recuperacionCuenta +", administrador= "+administrador.getNombres()+ "\nclientes=" + clientes + "\nvehiculos=" + vehiculos;
+        return "Empleado: Sus nombres son: " + nombres + ", sus apellidos: " + apellidos + ", su cédula es: " + cedula + ",su correo es: " + correo+ ", su usuario es: " + usuario + ", su contraseña es: " + contraseña + ", su cuenta de recuperación es: "
+                +recuperacionCuenta+",su administrador es: " +administrador.getNombres()+ "\n Sus clientes son: " + clientes + "\nSus vehiculos son: " + vehiculos;
     }
 
     public void agregarCliente(Cliente cliente){
@@ -114,4 +116,5 @@ public class Empleado extends Persona{
     public static void mostrarMensaje(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje, "Información",JOptionPane.INFORMATION_MESSAGE);
     }
+
 }

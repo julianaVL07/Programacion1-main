@@ -40,8 +40,8 @@ public class VehiculoNumero extends Vehiculo {
 
     @Override
     public String toString() {
-        return "VehiculoNumero:"+super.toString()+"numeroPasajeros=" + numeroPasajeros + ", numeroPuertas=" + numeroPuertas
-                + ", numeroBolsasAire=" + numeroBolsasAire;
+        return super.toString()+"-numero de pasajeros: " + numeroPasajeros + "-numero de puertas:" + numeroPuertas
+                + "-numero de bolsas de aire" + numeroBolsasAire;
     }
 
     

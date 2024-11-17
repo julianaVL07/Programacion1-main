@@ -35,7 +35,7 @@ public class Electrico extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Electrico:"+super.toString()+", autonomia=" + autonomia + ", tiempoCarga=" + tiempoCarga ;
+        return "\nEléctrico{ "+super.toString()+"-su autonomía es: " + autonomia + "-su tiempo de Carga es" + tiempoCarga+"}";
     }
 
     public static void mostrarMensaje(String mensaje){

@@ -58,8 +58,10 @@ public class App2 {
 
         vehiculos.add(new Moto("MOTO001", "Yamaha", "MT-07", true, 6, 200.0, 689.0, Transmision.MANUAL,
                 Combustible.GASOLINA));
-        vehiculos.add(new Moto("MOTO002", "Kawasaki", "Ninja 400", false, 6, 190.0, 399.0, Transmision.MANUAL,
-                Combustible.GASOLINA));
+        vehiculos.add(new Van("VAN002", "Mercedes-Benz", "Sprinter", false, 5, 160.0, 3.0, Transmision.MANUAL, Combustible.DIESEL, 
+        15, 4, 8, true, true, false, 4000.0));
+        vehiculos.add(new PickUp("PU002", "Toyota", "Hilux", false, 5, 180.0, 2.8, Transmision.AUTOMATICA, Combustible.GASOLINA,5, 4, 4, true, true, false, false, 1200.0));
+        vehiculos.add(new Deportivo("DEP001", "Ferrari", "488 GTB", true, 7, 330.0, 3.9, Transmision.AUTOMATICA, Combustible.GASOLINA, 2, 2, 6, 720, 3.0));
     }
 
     private static void loginEmpleado() {
@@ -68,7 +70,7 @@ public class App2 {
     
         for (Empleado empleado : empleados) {
             if (empleado.getUsuario().equals(username) && empleado.getContraseña().equals(password)) {
-                if (empleado.isCuentaBloqueada()) {
+                if (empleado.getCuentaBloqueada()) {
                     JOptionPane.showMessageDialog(null, "Cuenta bloqueada. No puede acceder al sistema.", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -273,37 +275,135 @@ public class App2 {
     }
 }
 
-
     private static void registrarTransaccion(Empleado empleado) {
         JOptionPane.showMessageDialog(null, "=== Registro de Transacción ===");
         String[] opcionesTransaccion = {"Venta", "Compra", "Alquiler"};
         int tipo = JOptionPane.showOptionDialog(null, "Seleccione el tipo de transacción:", "Tipo de Transacción",
         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcionesTransaccion, opcionesTransaccion[0]) + 1;
 
-    // Seleccionar cliente
-        JOptionPane.showMessageDialog(null, "=== Selección de Cliente ===");
-        String nombreCliente = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
-        String apellidoCliente = JOptionPane.showInputDialog("Ingrese el apellido del cliente:");
-        String cedulaCliente = JOptionPane.showInputDialog("Ingrese la cédula del cliente:");
-        String correoCliente = JOptionPane.showInputDialog("Ingrese el correo del cliente:");
-        String telefonoCliente = JOptionPane.showInputDialog("Ingrese el teléfono del cliente:");
-        String edadClienteStr = JOptionPane.showInputDialog("Ingrese la edad del cliente:");
-        int edadCliente = Integer.parseInt(edadClienteStr);
+    //agregar cliente
+    JOptionPane.showMessageDialog(null, "=== Selección de Cliente ===");
 
-        Cliente cliente = new Cliente(nombreCliente, apellidoCliente, cedulaCliente, correoCliente, telefonoCliente, edadCliente);
-        clientes.add(cliente);
+    String nombreCliente = "";
+    while (true) {
+        try {
+            nombreCliente = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
+            if (nombreCliente != null && !nombreCliente.isEmpty()) break;
+            throw new Exception("El nombre no puede estar vacío.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+    
+    String apellidoCliente = "";
+    while (true) {
+        try {
+            apellidoCliente = JOptionPane.showInputDialog("Ingrese el apellido del cliente:");
+            if (apellidoCliente != null && !apellidoCliente.isEmpty()) break;
+            throw new Exception("El apellido no puede estar vacío.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+    
+    String cedulaCliente = "";
+    while (true) {
+        try {
+            cedulaCliente = JOptionPane.showInputDialog("Ingrese la cédula del cliente:");
+            if (cedulaCliente != null && !cedulaCliente.isEmpty()) break;
+            throw new Exception("La cédula no puede estar vacía.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+    
+    String correoCliente = "";
+    while (true) {
+        try {
+            correoCliente = JOptionPane.showInputDialog("Ingrese el correo del cliente:");
+            if (correoCliente != null && !correoCliente.isEmpty()) break;
+            throw new Exception("El correo no puede estar vacío.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+    
+    String telefonoCliente = "";
+    while (true) {
+        try {
+            telefonoCliente = JOptionPane.showInputDialog("Ingrese el teléfono del cliente:");
+            if (telefonoCliente != null && !telefonoCliente.isEmpty()) break;
+            throw new Exception("El teléfono no puede estar vacío.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+    
+    String edadClienteStr = "";
+    while (true) {
+        try {
+            edadClienteStr = JOptionPane.showInputDialog("Ingrese la edad del cliente:");
+            if (edadClienteStr != null && !edadClienteStr.isEmpty()) break;
+            throw new Exception("La edad no puede estar vacía.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+    int edadCliente = Integer.parseInt(edadClienteStr);
+    
+    // Crear el cliente
+    Cliente cliente = new Cliente(nombreCliente, apellidoCliente, cedulaCliente, correoCliente, telefonoCliente, edadCliente);
+    clientes.add(cliente);
 
+    //Seleccionar vehículo
+    JOptionPane.showMessageDialog(null, "=== Selección de Vehículo ===");
 
-        // Seleccionar vehículo
-        JOptionPane.showMessageDialog(null, "=== Selección de Vehículo ===");
-        StringBuilder listaVehiculos = new StringBuilder();
+    // Construcción de la lista de vehículos para mostrar al usuario
+    StringBuilder listaVehiculos = new StringBuilder();
         for (int i = 0; i < vehiculos.size(); i++) {
             listaVehiculos.append((i + 1)).append(". ").append(vehiculos.get(i).toString()).append("\n");
         }
         JOptionPane.showMessageDialog(null, listaVehiculos.toString(), "Lista de Vehículos", JOptionPane.INFORMATION_MESSAGE);
-        String indiceVehiculoStr = JOptionPane.showInputDialog("Seleccione un vehículo (número):");
+
+    Vehiculo vehiculoSeleccionado = null;
+    boolean seleccionValida = false;
+
+        // Bucle para validar la selección del vehículo
+    while (!seleccionValida) {
+        try {
+            String indiceVehiculoStr = JOptionPane.showInputDialog("Seleccione un vehículo (número):");
+        
+            // Verifica si el usuario cancela el cuadro de diálogo o cierra la ventana
+            if (indiceVehiculoStr == null) {
+                JOptionPane.showMessageDialog(null, "Operación cancelada.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                break;
+        }
+        
         int indiceVehiculo = Integer.parseInt(indiceVehiculoStr) - 1;
-        Vehiculo vehiculoSeleccionado = vehiculos.get(indiceVehiculo);
+
+        // Verificar si el índice está dentro del rango válido
+        if (indiceVehiculo < 0 || indiceVehiculo >= vehiculos.size()) {
+            throw new IndexOutOfBoundsException("El número seleccionado no está en la lista de vehículos.");
+        }
+
+        // Si es válido, asignar el vehículo seleccionado y salir del bucle
+            vehiculoSeleccionado = vehiculos.get(indiceVehiculo);
+            seleccionValida = true;
+
+    } catch (NumberFormatException e) {
+        // Si el usuario ingresa un valor que no es un número
+        JOptionPane.showMessageDialog(null, "Entrada no válida. Debe ingresar un número.", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (IndexOutOfBoundsException e) {
+        // Si el número seleccionado está fuera del rango de la lista
+        JOptionPane.showMessageDialog(null, "El número ingresado no corresponde a ningún vehículo en la lista. Intente nuevamente.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    // Verificar si se seleccionó un vehículo correctamente
+    if (vehiculoSeleccionado != null) {
+        JOptionPane.showMessageDialog(null, "Has seleccionado: " + vehiculoSeleccionado.toString(), "Vehículo Seleccionado", JOptionPane.INFORMATION_MESSAGE);
+}
+
 
         // Registro de la transacción
         String fecha = JOptionPane.showInputDialog("Ingrese la fecha de la transacción (dd/MM/yyyy):");
@@ -351,42 +451,107 @@ public class App2 {
             opciones, 
             opciones[0]);
 
-        String codigo = JOptionPane.showInputDialog("Ingrese el código del vehículo:");
-        String marca = JOptionPane.showInputDialog("Ingrese la marca del vehículo:");
-        String modelo = JOptionPane.showInputDialog("Ingrese el modelo del vehículo:");
-        String esNuevoStr = JOptionPane.showInputDialog("¿El vehículo es nuevo? (true/false):");
-        boolean esNuevo = Boolean.parseBoolean(esNuevoStr);
-        String cambiosStr = JOptionPane.showInputDialog("Ingrese la cantidad de cambios:");
-        int cambios = Integer.parseInt(cambiosStr);
-        String velocidadMaxStr = JOptionPane.showInputDialog("Ingrese la velocidad máxima (km/h):");
-        double velocidadMax = Double.parseDouble(velocidadMaxStr);
-        String cilindrajeStr = JOptionPane.showInputDialog("Ingrese el cilindraje:");
-        double cilindraje = Double.parseDouble(cilindrajeStr);
+            String codigo = "";
+            while (true) {
+                try {
+                    codigo = JOptionPane.showInputDialog("Ingrese el código del vehículo:");
+                    if (codigo != null && !codigo.isEmpty()) break;
+                    throw new Exception("El código no puede estar vacío.");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+                }
+            }
+        
+            String marca = "";
+            while (true) {
+                try {
+                    marca = JOptionPane.showInputDialog("Ingrese la marca del vehículo:");
+                    if (marca != null && !marca.isEmpty()) break;
+                    throw new Exception("La marca no puede estar vacía.");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+                }
+            }
+        
+            String modelo = "";
+            while (true) {
+                try {
+                    modelo = JOptionPane.showInputDialog("Ingrese el modelo del vehículo:");
+                    if (modelo != null && !modelo.isEmpty()) break;
+                    throw new Exception("El modelo no puede estar vacío.");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+                }
+            }
+        
+            boolean esNuevo = false;
+            while (true) {
+                try {
+                    esNuevo = Boolean.parseBoolean(JOptionPane.showInputDialog("¿El vehículo es nuevo? (true/false):"));
+                    break;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error: Debe ingresar true o false.");
+                }
+            }
+        
+            int cambios = 0;
+            while (true) {
+                try {
+                    cambios = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de cambios:"));
+                    break;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error: Debe ingresar un número entero.");
+                }
+            }
+        
+            double velocidadMax = 0;
+            while (true) {
+                try {
+                    velocidadMax = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la velocidad máxima (km/h):"));
+                    break;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error: Debe ingresar un número decimal.");
+                }
+            }
+        
+            double cilindraje = 0;
+            while (true) {
+                try {
+                    cilindraje = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el cilindraje:"));
+                    break;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error: Debe ingresar un número decimal.");
+                }
+            }
+        
+            Transmision transmision = Transmision.MANUAL;
+            while (true) {
+                try {
+                    transmision = Transmision.valueOf(JOptionPane.showInputDialog("¿El vehículo tiene transmisión automática? (AUTOMATICA/MANUAL):").toUpperCase());
+                    break;
+                } catch (IllegalArgumentException e) {
+                    JOptionPane.showMessageDialog(null, "Error: Debe ingresar AUTOMATICA o MANUAL.");
+                }
+            }
+        
+            Combustible combustible = Combustible.GASOLINA;
+            while (true) {
+                try {
+                    combustible = Combustible.valueOf(JOptionPane.showInputDialog("¿El vehículo qué tipo de combustible tiene? (GASOLINA/DIESEL/ELECTRICO/HIBRIDO):").toUpperCase());
+                    break;
+                } catch (IllegalArgumentException e) {
+                    JOptionPane.showMessageDialog(null, "Error: Debe ingresar GASOLINA, DIESEL, ELECTRICO o HIBRIDO.");
+                }
+            }
 
-        String transmisionInput = JOptionPane.showInputDialog("¿El vehículo tiene transmisión automática? (AUTOMATICA/MANUAL):");
-        Transmision transmision = null;
-        try {
-            transmision = Transmision.valueOf(transmisionInput.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Valor inválido para transmisión. Se asignará el valor por defecto: MANUAL.");
-            transmision = Transmision.MANUAL; // Valor por defecto
-        }
-
-        String combustibleInput = JOptionPane.showInputDialog("¿El vehículo qué tipo de combustible tiene? (GASOLINA/DIESEL/ELECTRICO/HIBRIDO):");
-        Combustible combustible = null;
-        try {
-            combustible = Combustible.valueOf(combustibleInput.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Valor inválido para combustible. Se asignará el valor por defecto: GASOLINA.");
-            combustible = Combustible.GASOLINA; // Valor por defecto
-        }
-
-        Vehiculo nuevoVehiculo = null;
-        switch (tipoVehiculo) {
+            Vehiculo nuevoVehiculo = null;
+            try{
+            switch (tipoVehiculo) {
             case 0:  // Moto
                 nuevoVehiculo = new Moto(codigo, marca, modelo, esNuevo, cambios, velocidadMax, cilindraje, transmision, combustible);
                 break;
             case 1:  // Sedán
+                try{
                 String pasajerosStr = JOptionPane.showInputDialog("Ingrese el número de pasajeros:");
                 int numeroPasajeros = Integer.parseInt(pasajerosStr);
                 String puertasStr = JOptionPane.showInputDialog("Ingrese el número de puertas:");
@@ -411,8 +576,12 @@ public class App2 {
                 double capacidadCarga = Double.parseDouble(capacidadCargaStr);
 
                 nuevoVehiculo = new Sedan(codigo, marca, modelo, esNuevo, cambios, velocidadMax, cilindraje, transmision, combustible, numeroPasajeros, numeroPuertas, numeroBolsasAire, aireAcondicionado, abs, camaraReversa, sensorColision, sensorTrafico, asistentePermanenciaCarril, velocidadCrucero, capacidadCarga);
+                } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error en la entrada de datos para Sedán: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 break;
             case 2:  // Deportivo
+                try{
                 String caballosStr = JOptionPane.showInputDialog("Ingrese el número de caballos de fuerza:");
                 int caballosFuerza = Integer.parseInt(caballosStr);
                 String tiempoCienStr = JOptionPane.showInputDialog("Ingrese el tiempo en segundos para alcanzar los 100 km/h:");
@@ -425,8 +594,12 @@ public class App2 {
                 int numeroBolsasAireDeportivo = Integer.parseInt(bolsasAireDeportivoStr);
 
                 nuevoVehiculo = new Deportivo(codigo, marca, modelo, esNuevo, cambios, velocidadMax, cilindraje, transmision, combustible, numeroPasajerosDeportivo, numeroPuertasDeportivo, numeroBolsasAireDeportivo, caballosFuerza, tiempoCien);
+                } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error en la entrada de datos para Deportivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 break;
             case 3:  // Camioneta
+                try{
                 String numeroPasajerosStr = JOptionPane.showInputDialog("Ingrese el número de pasajeros: ");
                 int numeroPasajerosCamioneta = Integer.parseInt(numeroPasajerosStr);
                 String numeroPuertasStr = JOptionPane.showInputDialog("Ingrese el número de puertas: ");
@@ -458,9 +631,13 @@ public class App2 {
                         aireAcondicionadoCamioneta, absCamioneta, camaraReversaCamioneta,
                         sensorColisionCamioneta, sensorTraficoCamioneta, asistentePermanenciaCarrilCamioneta,
                         velocidadCruceroCamioneta, capacidadCargaCamioneta, cuatroxcuatro);
-                break;
+                    } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error en la entrada de datos para camioneta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
             //Pick up
             case 4:
+            try{
                 String numeroPasajerosPickUpStr = JOptionPane.showInputDialog("Ingrese el número de pasajeros:");
                 int numeroPasajerosPickUp = Integer.parseInt(numeroPasajerosPickUpStr);
                 String numeroPuertasPickUpStr = JOptionPane.showInputDialog("Ingrese el número de puertas:");
@@ -481,24 +658,38 @@ public class App2 {
                 nuevoVehiculo = new PickUp(codigo, marca, modelo, esNuevo, cambios, velocidadMax, cilindraje,
                 transmision, combustible, numeroPasajerosPickUp,numeroPuertasPickUp , numeroBolsasAirePickUp,
                 aireAcondicionadoPickUp, absPickUp, camaraReversaPickUp, cuatroxcuatroPickUp, capacidadCargaPickUp);
-            break;
+                } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error en la entrada de datos para Pick up: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+
+                
             case 5:  // Eléctrico
+            try{
                 String autonomiaStr = JOptionPane.showInputDialog("Ingrese la autonomía (en km):");
                 double autonomia = Double.parseDouble(autonomiaStr);
                 String tiempoCargaStr = JOptionPane.showInputDialog("Ingrese el tiempo de carga (en horas):");
                 double tiempoCarga = Double.parseDouble(tiempoCargaStr);
                 nuevoVehiculo = new Electrico(codigo, marca, modelo, esNuevo, cambios, velocidadMax, cilindraje, transmision, combustible, autonomia, tiempoCarga);
-                break;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error en la entrada de datos para eléctrico: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            break;
             case 6:  // Híbrido
+            try{
                 String enchufableStr = JOptionPane.showInputDialog("¿El vehículo es enchufable? (true/false):");
                 boolean enchufable = Boolean.parseBoolean(enchufableStr);
                 String ligeroStr = JOptionPane.showInputDialog("¿El vehículo es ligero? (true/false):");
                 boolean ligero = Boolean.parseBoolean(ligeroStr);
 
                 nuevoVehiculo = new Hibrido(codigo, marca, modelo, esNuevo, cambios, velocidadMax, cilindraje, transmision, combustible, enchufable, ligero);
-                break;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error en la entrada de datos para híbrido: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            break;
 
             case 7: //Van
+            try{
                 String numeroPasajerosVanStr = JOptionPane.showInputDialog("Ingrese el número de pasajeros:");
                 int numeroPasajerosVan = Integer.parseInt(numeroPasajerosVanStr);
 
@@ -524,8 +715,12 @@ public class App2 {
                     transmision, combustible, numeroPasajerosVan, numeroPuertasVan,
                     numeroBolsasAireVan, aireAcondicionadoVan, absVan, camaraReversaVan, capacidadMaletero);
                 
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error en la entrada de datos para Sedán: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 break;
-            case 8:
+            case 8: //camion
+            try{
                 String capacidadCargaCamionStr = JOptionPane.showInputDialog("Ingrese la capacidad de carga:");
                 double capacidadCargaCamion = Double.parseDouble(capacidadCargaCamionStr);
 
@@ -546,8 +741,12 @@ public class App2 {
                 nuevoVehiculo = new Camion(codigo, marca, modelo, esNuevo, cambios, velocidadMax, cilindraje,
                     transmision, combustible, capacidadCargaCamion, aireAcondicionadoCamion, frenosAire, absCamion, numeroEjesCamion,
                     TipoCamion.valueOf(tipoCamionStr.toUpperCase()));
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error en la entrada de datos para camion: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 break;
-            case 9:
+            case 9: //Bus
+            try{
                 String numeroPasajerosBusStr = JOptionPane.showInputDialog("Ingrese el número de pasajeros:");
                 int numeroPasajerosBus = Integer.parseInt(numeroPasajerosBusStr);
 
@@ -578,17 +777,23 @@ public class App2 {
                 nuevoVehiculo = new Bus(codigo, marca, modelo, esNuevo, cambios, velocidadMax, cilindraje, transmision, combustible,
                     numeroPasajerosBus, numeroPuertasBus, numeroBolsasAireBus, aireAcondicionadoBus, absBus,camaraReversaBus, numeroEjesBus,
                     numeroSalidasEmergencia, capacidadMaleteroBus);
-                break;  
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Error en la entrada de datos para Bus: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
             default:
                 JOptionPane.showMessageDialog(null, "Tipo de vehículo no válido", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
         }
-
-        vehiculos.add(nuevoVehiculo);
-        JOptionPane.showMessageDialog(null, "Vehículo agregado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showInputDialog(nuevoVehiculo.toString());
-    
-        }
         
+        vehiculos.add(nuevoVehiculo);
+        if (nuevoVehiculo != null) {
+            JOptionPane.showMessageDialog(null, "Vehículo creado con éxito: " + nuevoVehiculo.toString(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        }
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+   
 }
  

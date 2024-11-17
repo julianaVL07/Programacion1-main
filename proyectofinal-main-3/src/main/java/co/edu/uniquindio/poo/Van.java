@@ -25,7 +25,7 @@ public class Van extends VehiculoEsencial {
 
     @Override
     public String toString() {
-        return "Van: "+super.toString()+", capacidadMaletero=" + capacidadMaletero;
+        return "\nVan{ "+super.toString()+"-capacidadMaletero:" + capacidadMaletero+"}";
     }
     
     

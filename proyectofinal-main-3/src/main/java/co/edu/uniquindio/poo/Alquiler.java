@@ -49,6 +49,7 @@ public class Alquiler extends Transaccion implements ICostoTransaccion{
         JOptionPane.showMessageDialog(null, mensaje, "Información",JOptionPane.INFORMATION_MESSAGE);
     }
 
+    @Override
     public double calcularCosto(){
         return diasAlquiler*precioAlquiler;
     }

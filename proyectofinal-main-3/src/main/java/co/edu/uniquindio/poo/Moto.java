@@ -14,7 +14,7 @@ public class Moto extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Moto: "+super.toString();
+        return "\nMoto{ "+super.toString()+"}";
     }
     public static void mostrarMensaje(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje, "Información",JOptionPane.INFORMATION_MESSAGE);

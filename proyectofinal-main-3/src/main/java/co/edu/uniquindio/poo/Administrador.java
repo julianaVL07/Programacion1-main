@@ -62,8 +62,8 @@ public class Administrador extends Persona {
 
     @Override
     public String toString() {
-        return "Administrador:"+super.toString()+", usuario=" + usuario + ", contraseña=" + contraseña + ", recuperacionCuenta="
-                + recuperacionCuenta + "\nempleados=" + empleados + "]";
+        return "Administrador: Sus nombres son: " + nombres + ", sus apellidos: " + apellidos + ", su cédula es: " + cedula + ",su correo es:" + correo+ ", su usuario es:" + usuario + ", su contraseña es:" + contraseña + ", su cuenta de recuperación es : "
+                + recuperacionCuenta + "\nSus Empleados son: " + empleados;
     }
 
     public void agregarEmpleado(Empleado empleado){

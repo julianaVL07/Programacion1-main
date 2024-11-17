@@ -33,7 +33,7 @@ public class PickUp extends VehiculoEsencial {
 
     @Override
     public String toString() {
-        return "pickUp: "+super.toString()+", cuatroxcuatro=" + cuatroxcuatro + ", capacidadCarga=" + capacidadCarga;
+        return "\npickUp{ "+super.toString()+"-cuatroxcuatro:" + cuatroxcuatro + "-capacidadCarga:" + capacidadCarga+"}";
     }
 
     

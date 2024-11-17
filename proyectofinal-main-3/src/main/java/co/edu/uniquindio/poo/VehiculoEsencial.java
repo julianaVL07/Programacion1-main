@@ -42,8 +42,7 @@ public class VehiculoEsencial extends VehiculoNumero{
 
     @Override
     public String toString() {
-        return "VehiculoEsencial:"+super.toString()+", aireAcondicionado=" + aireAcondicionado + ", abs=" + abs + ", camaraReversa=" +camaraReversa;
+        return super.toString()+"-aireAcondicionado: " + aireAcondicionado + "-abs:" + abs + "-camaraReversa:" +camaraReversa;
     }
-
     
 }
