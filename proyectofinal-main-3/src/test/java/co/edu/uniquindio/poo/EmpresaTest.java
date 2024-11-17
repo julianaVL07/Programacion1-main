@@ -24,9 +24,9 @@ public class EmpresaTest {
         
         LOG.info("Iniciado test datos iguales");
         
-        Empresa empresa = new Empresa("Transportes automóviles SJLL");
+        Empresa empresa = new Empresa("Tu carro UQ");
 
-        assertEquals("Transportes automóviles SJLL",empresa.getNombre());
+        assertEquals("Tu carro UQ",empresa.getNombre());
 
         LOG.info("Finalizando test datos iguales");
     } 
@@ -38,7 +38,7 @@ public class EmpresaTest {
         
         LOG.info("Iniciado test agregarPersona");
 
-        Empresa empresa = new Empresa("Transportes automóviles SJLL");
+        Empresa empresa = new Empresa("Tu carro UQ");
         
         Administrador administrador = new Administrador("María", "Gómez", "0987654321", "maria.gomez@mail.com", "maria456", "contraseña2", "respuesta2");
         Empleado empleado = new Empleado ("Juan", "Hernandez", "123", "juan@gmail.com", "JuanUser", "Juan123", "preguntaSeguridad", administrador);

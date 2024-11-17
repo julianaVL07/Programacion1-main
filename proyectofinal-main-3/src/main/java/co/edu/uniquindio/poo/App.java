@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class App {
     public static void main(String[] args) {
 
-        Empresa empresa = new Empresa("Transportes automóviles SJLL");
+        Empresa empresa = new Empresa("Tu carro UQ");
 
         Administrador administrador1 = new Administrador("Juan", "Pérez", "1234567890", "juan.perez@mail.com", "juan123", "contraseña1", "respuesta1");
         Administrador administrador2 = new Administrador("María", "Gómez", "0987654321", "maria.gomez@mail.com", "maria456", "contraseña2", "respuesta2");

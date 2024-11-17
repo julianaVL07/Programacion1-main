@@ -21,7 +21,7 @@ public class App2 {
         while (!salir) {
             String[] opciones = {"Login como Empleado", "Login como Administrador", "Salir"};
             int opcion = JOptionPane.showOptionDialog(null, 
-                "=== Bienvenido a Transportes automóviles SJLL===", 
+                "=== Bienvenido a Tu carro UQ===", 
                 "Menú Principal", 
                 JOptionPane.DEFAULT_OPTION, 
                 JOptionPane.INFORMATION_MESSAGE, 
@@ -43,7 +43,7 @@ public class App2 {
                     JOptionPane.showMessageDialog(null, "Opción no válida", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        JOptionPane.showMessageDialog(null, "Gracias por usar Transportes automóviles SJLL");
+        JOptionPane.showMessageDialog(null, "Gracias por usar Tu carro UQ");
     }
 
     private static void inicializarDatos() {
