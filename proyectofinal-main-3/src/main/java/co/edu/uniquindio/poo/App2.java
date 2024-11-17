@@ -65,9 +65,13 @@ public class App2 {
     private static void loginEmpleado() {
         String username = JOptionPane.showInputDialog("Ingrese su username:");
         String password = JOptionPane.showInputDialog("Ingrese su contraseña:");
-
+    
         for (Empleado empleado : empleados) {
             if (empleado.getUsuario().equals(username) && empleado.getContraseña().equals(password)) {
+                if (empleado.isCuentaBloqueada()) {
+                    JOptionPane.showMessageDialog(null, "Cuenta bloqueada. No puede acceder al sistema.", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 JOptionPane.showMessageDialog(null, "Login exitoso como Empleado");
                 menuEmpleado(empleado);
                 return;
