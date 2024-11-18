@@ -53,7 +53,7 @@ public class App2 {
         administradores.add(administrador1);
         empleados.add(new Empleado("Luis", "Martínez", "1112223334", "luis.martinez@mail.com", 
                 "luis001", "456", "¿Cuál es el codigo enviado?", administrador1));
-        empleados.add(new Empleado("Ana", "Hernández", "5556667778", "ana.hernandez@mail.com", "ana002", "contraseñaB", "respuestaB", administrador1));
+        empleados.add(new Empleado("Ana", "Hernández", "5556667778", "ana.hernandez@mail.com", "ana002", "002", "¿Cuál es el codigo enviado?", administrador1));
 
 
         vehiculos.add(new Moto("MOTO001", "Yamaha", "MT-07", true, 6, 200.0, 689.0, Transmision.MANUAL,
