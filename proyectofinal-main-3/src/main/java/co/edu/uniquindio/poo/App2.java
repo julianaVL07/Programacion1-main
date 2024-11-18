@@ -50,11 +50,11 @@ public class App2 {
         // Datos iniciales de ejemplo
         Administrador administrador1 = new Administrador("Juan", "Pérez", "1234567890", "juan.perez@mail.com",
                 "juan123", "1234", "¿Cuál es el codigo enviado?");
-
         administradores.add(administrador1);
-
         empleados.add(new Empleado("Luis", "Martínez", "1112223334", "luis.martinez@mail.com", 
                 "luis001", "456", "¿Cuál es el codigo enviado?", administrador1));
+        empleados.add(new Empleado("Ana", "Hernández", "5556667778", "ana.hernandez@mail.com", "ana002", "contraseñaB", "respuestaB", administrador1));
+
 
         vehiculos.add(new Moto("MOTO001", "Yamaha", "MT-07", true, 6, 200.0, 689.0, Transmision.MANUAL,
                 Combustible.GASOLINA));

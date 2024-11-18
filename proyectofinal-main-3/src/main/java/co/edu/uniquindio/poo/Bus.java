@@ -45,8 +45,7 @@ public class Bus extends VehiculoEsencial {
 
     @Override
     public String toString() {
-        return "\nBus{ "+super.toString()+"-sus números de Ejes: " + numeroEjes + "-sus número de Salidas de Emergencia: " + numeroSalidasEmergencia
-                + "-su capacidad Maletero es:" + capacidadMaletero+"}";
+        return "\nBus{ "+super.toString()+"-sus números de Ejes: " + numeroEjes + "-sus número de Salidas de Emergencia: " + numeroSalidasEmergencia + "-su capacidad Maletero es:" + capacidadMaletero+"kg }";
     }
 
     public static void mostrarMensaje(String mensaje){

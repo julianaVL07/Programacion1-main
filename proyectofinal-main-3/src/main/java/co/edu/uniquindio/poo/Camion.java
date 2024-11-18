@@ -74,7 +74,7 @@ public class Camion extends Vehiculo{
 
     @Override
     public String toString() {
-        return "\nCamion{"+super.toString()+"-su capacidad Carga es: " + capacidadCarga + "-tiene aire Acondicionado: " + aireAcondicionado + "-tiene frenosAire: "+ frenosAire + "-tiene abs: " + abs + "-tiene numeroEjes: " + numeroEjes + "-su de tipo Camion es: " + tipoCamion+"}";
+        return "\nCamion{"+super.toString()+"-su capacidad Carga es: " + capacidadCarga + "kg -tiene aire Acondicionado: " + aireAcondicionado + "-tiene frenosAire: "+ frenosAire + "-tiene abs: " + abs + "-tiene numeroEjes: " + numeroEjes + "-su de tipo Camion es: " + tipoCamion+"}";
     }
     
     public static void mostrarMensaje(String mensaje){
