@@ -42,7 +42,7 @@ public class Alquiler extends Transaccion implements ICostoTransaccion{
 
     @Override
     public String toString() {
-        return "Alquiler: "+super.toString()+ "\ndiasAlquiler=" + diasAlquiler+"\nprecioAquiler"+precioAlquiler+ "\nPrecio total "+ calcularCosto();
+        return "Alquiler: "+super.toString()+ "\ndiasAlquiler: " + diasAlquiler+"\nprecioAquiler: "+precioAlquiler+ "\nPrecio total: "+ calcularCosto();
     }
 
     public static void mostrarMensaje(String mensaje){
