@@ -49,12 +49,12 @@ public class App2 {
     private static void inicializarDatos() {
         // Datos iniciales de ejemplo
         Administrador administrador1 = new Administrador("Juan", "Pérez", "1234567890", "juan.perez@mail.com",
-                "juan123", "1234", "respuesta1");
+                "juan123", "1234", "¿Cuál es el codigo enviado?");
 
         administradores.add(administrador1);
 
         empleados.add(new Empleado("Luis", "Martínez", "1112223334", "luis.martinez@mail.com", 
-                "luis001", "456", "respuestaA", administrador1));
+                "luis001", "456", "¿Cuál es el codigo enviado?", administrador1));
 
         vehiculos.add(new Moto("MOTO001", "Yamaha", "MT-07", true, 6, 200.0, 689.0, Transmision.MANUAL,
                 Combustible.GASOLINA));
@@ -282,7 +282,7 @@ public class App2 {
         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcionesTransaccion, opcionesTransaccion[0]) + 1;
 
     //agregar cliente
-    JOptionPane.showMessageDialog(null, "=== Selección de Cliente ===");
+    JOptionPane.showMessageDialog(null, "=== ingrese el Cliente ===");
 
     String nombreCliente = "";
     while (true) {
@@ -351,34 +351,50 @@ public class App2 {
     }
     int edadCliente = Integer.parseInt(edadClienteStr);
     
-    // Crear el cliente
+    // agregar el cliente
     Cliente cliente = new Cliente(nombreCliente, apellidoCliente, cedulaCliente, correoCliente, telefonoCliente, edadCliente);
     clientes.add(cliente);
+
+    // Mostrar los clientes (Si hay clientes)
+    if (clientes.isEmpty()) {
+    JOptionPane.showMessageDialog(null, "No hay clientes registrados.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+    StringBuilder listaClientes = new StringBuilder();
+    for (int i = 0; i < clientes.size(); i++) {
+        listaClientes.append((i + 1)).append(". ").append(clientes.get(i).toString()).append("\n");
+    }
+    JOptionPane.showMessageDialog(null, listaClientes.toString(), "Lista de Clientes", JOptionPane.INFORMATION_MESSAGE);
+}
 
     //Seleccionar vehículo
     JOptionPane.showMessageDialog(null, "=== Selección de Vehículo ===");
 
-    // Construcción de la lista de vehículos para mostrar al usuario
+    // Verificar si hay vehículos registrados
+    if (vehiculos.isEmpty()) {
+    JOptionPane.showMessageDialog(null, "No hay vehículos disponibles.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    } else {
     StringBuilder listaVehiculos = new StringBuilder();
-        for (int i = 0; i < vehiculos.size(); i++) {
-            listaVehiculos.append((i + 1)).append(". ").append(vehiculos.get(i).toString()).append("\n");
-        }
-        JOptionPane.showMessageDialog(null, listaVehiculos.toString(), "Lista de Vehículos", JOptionPane.INFORMATION_MESSAGE);
+    for (int i = 0; i < vehiculos.size(); i++) {
+        listaVehiculos.append((i + 1)).append(". ").append(vehiculos.get(i).toString()).append("\n");
+    }
+    JOptionPane.showMessageDialog(null, listaVehiculos.toString(), "Lista de Vehículos", JOptionPane.INFORMATION_MESSAGE);
+}
 
     Vehiculo vehiculoSeleccionado = null;
     boolean seleccionValida = false;
 
-        // Bucle para validar la selección del vehículo
+    // Bucle para validar la selección del vehículo
     while (!seleccionValida) {
-        try {
-            String indiceVehiculoStr = JOptionPane.showInputDialog("Seleccione un vehículo (número):");
+    try {
+        String indiceVehiculoStr = JOptionPane.showInputDialog("Seleccione un vehículo (número):");
         
-            // Verifica si el usuario cancela el cuadro de diálogo o cierra la ventana
-            if (indiceVehiculoStr == null) {
-                JOptionPane.showMessageDialog(null, "Operación cancelada.", "Información", JOptionPane.INFORMATION_MESSAGE);
-                break;
+        // Verifica si el usuario cancela el cuadro de diálogo o cierra la ventana
+        if (indiceVehiculoStr == null) {
+            JOptionPane.showMessageDialog(null, "Operación cancelada.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            break;
         }
         
+        // Intenta convertir la entrada del usuario a un número
         int indiceVehiculo = Integer.parseInt(indiceVehiculoStr) - 1;
 
         // Verificar si el índice está dentro del rango válido
@@ -387,12 +403,12 @@ public class App2 {
         }
 
         // Si es válido, asignar el vehículo seleccionado y salir del bucle
-            vehiculoSeleccionado = vehiculos.get(indiceVehiculo);
-            seleccionValida = true;
+        vehiculoSeleccionado = vehiculos.get(indiceVehiculo);
+        seleccionValida = true;
 
     } catch (NumberFormatException e) {
         // Si el usuario ingresa un valor que no es un número
-        JOptionPane.showMessageDialog(null, "Entrada no válida. Debe ingresar un número.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Entrada no válida. Debe ingresar un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
     } catch (IndexOutOfBoundsException e) {
         // Si el número seleccionado está fuera del rango de la lista
         JOptionPane.showMessageDialog(null, "El número ingresado no corresponde a ningún vehículo en la lista. Intente nuevamente.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -435,9 +451,8 @@ public class App2 {
         }
 
         transacciones.add(transaccion);
-        JOptionPane.showMessageDialog(null, "Transacción registrada con éxito", "Éxito",
-                JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showInputDialog(transaccion.toString());
+        JOptionPane.showMessageDialog(null, "Transacción registrada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, transaccion.toString(), "Detalle de la Transacción", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private static void agregarVehiculo() {

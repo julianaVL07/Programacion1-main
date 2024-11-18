@@ -101,8 +101,10 @@ public class Empleado extends Persona{
 
     @Override
     public String toString() {
-        return "Empleado: Sus nombres son: " + nombres + ", sus apellidos: " + apellidos + ", su cédula es: " + cedula + ",su correo es: " + correo+ ", su usuario es: " + usuario + ", su contraseña es: " + contraseña + ", su cuenta de recuperación es: "
-                +recuperacionCuenta+",su administrador es: " +administrador.getNombres()+ "\n Sus clientes son: " + clientes + "\nSus vehiculos son: " + vehiculos;
+        String clientesInfo = clientes.isEmpty() ? "No hay clientes registrados." : clientes.toString();
+        String vehiculosInfo = vehiculos.isEmpty() ? "No hay vehículos registrados." : vehiculos.toString();
+
+        return "Empleado: Sus nombres son: " + nombres + ", sus apellidos: " + apellidos + ", su cédula es: " + cedula + ",su correo es: " + correo+ ", su usuario es: " + usuario + ", su contraseña es: " + contraseña + ", pregunta de recuperacion de cuenta: "+recuperacionCuenta+",su administrador es: " +administrador.getNombres();/* "\n Sus clientes son: " + clientesInfo + "\nSus vehiculos son: " + vehiculosInfo;*/
     }
 
     public void agregarCliente(Cliente cliente){

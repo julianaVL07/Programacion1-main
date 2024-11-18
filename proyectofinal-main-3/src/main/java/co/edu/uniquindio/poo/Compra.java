@@ -24,7 +24,7 @@ public class Compra extends Transaccion{
 
     @Override
     public String toString() {
-        return "Compra: "+super.toString();
+        return "Compra: "+super.toString()+"\nprecioCompra: "+precioCompra;
     }
 
     public static void mostrarMensaje(String mensaje){

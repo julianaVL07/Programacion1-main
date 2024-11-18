@@ -82,8 +82,8 @@ public class Transaccion{
 
     @Override
     public String toString() {
-        return "Transaccion, vehiculo=" + vehiculo + ", cliente=" + cliente
-                + ", empleado=" + empleado + ", fecha=" + fecha;
+        return "Transaccion, vehiculo:" + vehiculo +"\nfecha:" + fecha+ "\ncliente:" + cliente
+                + "\nempleado: " + empleado ;
     }
 
     public static List<Transaccion> getTransacciones() {

@@ -20,7 +20,7 @@ public class Venta extends Transaccion{
     
     @Override
     public String toString() {
-        return "Venta: "+super.toString();
+        return "Venta: "+super.toString()+"\nPrecio venta:"+precioVenta;
     }
 
 }
